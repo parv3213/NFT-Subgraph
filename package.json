@@ -1,0 +1,20 @@
+{
+  "name": "sampleNFT-subgraph",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "auth": "graph auth https://api.thegraph.com/deploy/ $GRAPH_ACCESS_TOKEN",
+    "codegen": "graph codegen --output-dir src/types/",
+    "build": "graph build",
+    "prepare-rinkeby": "mustache config/rinkeby.json subgraph.template.yaml > subgraph.yaml",
+    "deploy-rinkeby": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ parv3213/sample-nft"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-cli": "0.20.1",
+    "@graphprotocol/graph-ts": "0.20.1",
+    "mustache": "4.2.0"
+  },
+  "devDependencies": {
+    "prettier": "2.3.0"
+  }
+}
