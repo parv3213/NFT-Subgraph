@@ -1,0 +1,15 @@
+type User @entity {
+  id: ID! # address
+  mintedNFT: BigInt
+  token: [Token!] @derivedFrom(field: "owner")
+}
+
+type Token @entity {
+  id: ID! # number
+  tokenId: BigInt! # number
+  previousOwner: User
+  owner: User!
+  creator: User!
+  contentURI: String!
+  createdAtTimestamp: BigInt!
+}

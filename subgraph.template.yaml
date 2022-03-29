@@ -1,0 +1,28 @@
+specVersion: 0.0.2
+description: 'SampleNFT subgraph'
+repository: 'https://github.com/'
+schema:
+  file: ./src/schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: SampleNFT
+    # prettier-ignore
+    network: {{network}}
+    source:
+      address: '{{SampleNFTAddress}}'
+      abi: SampleNFT
+      # prettier-ignore
+      startBlock: {{startBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: ./src/mappings/sampleNFT.ts
+      entities:
+        - SampleNFT
+      abis:
+        - name: SampleNFT
+          file: ./src/abis/SampleNFT.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
